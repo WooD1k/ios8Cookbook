@@ -13,12 +13,7 @@ class DetailViewController: UIViewController {
 	@IBOutlet weak var detailDescriptionLabel: UILabel!
 
 
-	var detailItem: AnyObject? {
-		didSet {
-		    // Update the view.
-		    self.configureView()
-		}
-	}
+	var detailItem: AnyObject?
 
 	func configureView() {
 		// Update the user interface for the detail item.
@@ -26,6 +21,17 @@ class DetailViewController: UIViewController {
 		    if let label = self.detailDescriptionLabel {
 		        label.text = detail.description
 		    }
+		}
+		
+		if detailItem?.description == "blurEffect" {
+			let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+			let blurView = UIVisualEffectView(effect: blurEffect)
+			
+			blurView.frame.size = CGSize(width: 200, height: 200)
+			blurView.center = view.center
+			
+			view.backgroundColor = UIColor(CGColor: UIColor.grayColor().CGColor)
+			view.addSubview(blurView)
 		}
 	}
 
